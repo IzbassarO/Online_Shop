@@ -1,7 +1,7 @@
 package OnlineShopSystem.Client;
 
 import OnlineShopSystem.Category.Headphone;
-import OnlineShopSystem.Category.Рурурур;
+import OnlineShopSystem.Category.Laptop;
 import OnlineShopSystem.Category.Phone;
 import OnlineShopSystem.Category.TV;
 import OnlineShopSystem.Database.DatabaseConnection;
@@ -20,7 +20,7 @@ public class ClientMethods {
 
         System.out.println("""
                 There are several categories choose one:
-                1. Рурурур
+                1. Laptop
                 2. TV
                 3. Headphone
                 4. Phone""");
@@ -29,7 +29,7 @@ public class ClientMethods {
         switch (choice) {
             case 1:
                 category = "laptops";
-                Рурурур.showLaptops();
+                Laptop.showLaptops();
                 break;
             case 2:
                 category = "tvs";
@@ -106,7 +106,6 @@ public class ClientMethods {
         if (rs.next()) {
             currentBalance = rs.getDouble("balance");
         }
-
 
         PreparedStatement stmt3 = conn.prepareStatement("SELECT username FROM clients WHERE id = ? ");
         stmt3.setInt(1, client.getId());
