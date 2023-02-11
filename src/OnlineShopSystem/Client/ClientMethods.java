@@ -107,7 +107,6 @@ public class ClientMethods {
             currentBalance = rs.getDouble("balance");
         }
 
-
         PreparedStatement stmt3 = conn.prepareStatement("SELECT username FROM clients WHERE id = ? ");
         stmt3.setInt(1, client.getId());
         ResultSet rs3 = stmt3.executeQuery();
