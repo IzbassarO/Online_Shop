@@ -2,7 +2,6 @@ package OnlineShopSystem.Client;
 
 import OnlineShopSystem.Repository.Main;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class User {

@@ -1,8 +1,6 @@
 package OnlineShopSystem.Category;
 
 import OnlineShopSystem.Database.DatabaseConnection;
-import OnlineShopSystem.Repository.Main;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

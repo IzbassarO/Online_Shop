@@ -1,6 +1,4 @@
 package OnlineShopSystem.Client;
-
-import OnlineShopSystem.Client.User;
 import OnlineShopSystem.Database.DatabaseConnection;
 
 import java.sql.Connection;
