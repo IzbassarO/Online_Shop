@@ -22,6 +22,8 @@ public class Main {
         // Connect to the database
         DatabaseConnection.getConnection();
 
+        // Create object of categories Diyar here 4 categories create
+
         // Show main menu
         while (true) {
             System.out.println("Online Shop System");
@@ -83,7 +85,7 @@ public class Main {
                     ClientMethods.addBalance(client);
                     break;
                 case 3:
-
+                    ClientMethods.showStatus(client);
                     break;
                 case 4:
                     return;

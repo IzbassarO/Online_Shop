@@ -131,4 +131,8 @@ public class ClientMethods {
 
         System.out.println("Balance added successfully. Now " + name + " has " + (currentBalance + amount));
     }
+
+    public static void showStatus(OnlineShopSystem.Client.Clients client) {
+        System.out.println("ID: " + client.getId()  + "\nUsername: " + client.getUsername()  + "\nPassword: " + client.getPassword() + "\nBalance: " + client.getBalance());
+    }
 }
