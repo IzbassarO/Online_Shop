@@ -6,30 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Laptop {
-    private int id;
-    private String name;
-    private double price;
+public class Laptop extends Product implements ProductMethod {
+    public Laptop() {}
 
     public Laptop(int id, String name, double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+        super(id, name, price);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public static void showLaptops() {
+    @Override
+    public void showProducts() {
         try {
             // Get database connection
             Connection conn = DatabaseConnection.getConnection();
