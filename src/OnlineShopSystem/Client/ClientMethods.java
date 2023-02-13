@@ -16,6 +16,11 @@ public class ClientMethods {
         // Get database connection
         Connection conn = DatabaseConnection.getConnection();
 
+        Laptop laptop = new Laptop();
+        Headphone headphone = new Headphone();
+        Phone phone = new Phone();
+        TV tv = new TV();
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("""
@@ -29,19 +34,19 @@ public class ClientMethods {
         switch (choice) {
             case 1:
                 category = "laptops";
-                Laptop.showLaptops();
+                laptop.showProducts();
                 break;
             case 2:
                 category = "tvs";
-                TV.showTVs();
+                tv.showProducts();
                 break;
             case 3:
                 category = "headphones";
-                Headphone.showHeadphones();
+                headphone.showProducts();
                 break;
             case 4:
                 category = "phones";
-                Phone.showPhones();
+                phone.showProducts();
                 break;
         }
         System.out.println("Enter product id: ");

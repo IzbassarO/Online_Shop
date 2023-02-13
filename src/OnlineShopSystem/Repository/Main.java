@@ -24,6 +24,11 @@ public class Main {
 
         // Create object of categories Diyar here 4 categories create
 
+        Laptop laptop = new Laptop();
+        Phone phone = new Phone();
+        TV tv = new TV();
+        Headphone headphone = new Headphone();
+
         // Show main menu
         while (true) {
             System.out.println("Online Shop System");
@@ -47,16 +52,16 @@ public class Main {
                     }
                     break;
                 case 3:
-                    Laptop.showLaptops();
+                    laptop.showProducts();
                     break;
                 case 4:
-                    TV.showTVs();
+                    tv.showProducts();
                     break;
                 case 5:
-                    Headphone.showHeadphones();
+                    headphone.showProducts();
                     break;
                 case 6:
-                    Phone.showPhones();
+                    phone.showProducts();
                     break;
                 case 7:
                     System.exit(0);

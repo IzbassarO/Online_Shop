@@ -8,43 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Phone {
-    private int id;
-    private String name;
-    private double price;
-
+public class Phone extends Product implements ProductMethod{
     public Phone() {}
 
     public Phone(int id, String name, double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+        super(id, name, price);
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public static void showPhones() {
+    @Override
+    public void showProducts() {
         try {
             // Get database connection
             Connection conn = DatabaseConnection.getConnection();
