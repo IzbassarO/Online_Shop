@@ -62,7 +62,6 @@ public class ClientMethods {
             System.out.println("There is no product with such id");
             return;
         }
-
         // Check if the client has enough balance to buy the product
         if (client.getBalance() < productPrice) {
             System.out.println("Insufficient balance, please add balance.");
