@@ -22,7 +22,11 @@ public class Main {
         // Connect to the database
         DatabaseConnection.getConnection();
 
-        // Create object of categories Diyar here 4 categories create
+        // Create object of categories
+        Laptop laptop = new Laptop();
+        Phone phone = new Phone();
+        TV tv = new TV();
+        Headphone headphone = new Headphone();
 
         Laptop laptop = new Laptop();
         Phone phone = new Phone();
