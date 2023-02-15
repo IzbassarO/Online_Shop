@@ -95,7 +95,8 @@ public class Main {
             System.out.println("1. Add product");
             System.out.println("2. Show all users");
             System.out.println("3. Remove a user");
-            System.out.println("4. Logout");
+            System.out.println("4. Show admin status");
+            System.out.println("5. Logout");
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
