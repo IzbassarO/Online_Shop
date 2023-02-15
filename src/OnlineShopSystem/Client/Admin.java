@@ -17,23 +17,23 @@ public class Admin{
         this.password = password;
     }
 
-    public void openAdminAccount() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter admin username: ");
-        String adminName = scanner.nextLine();
-        System.out.print("Enter admin password: ");
-        String adminPass = scanner.nextLine();
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-        try {
-            PreparedStatement stmt = Main.conn.prepareStatement("Select * FROM admin WHERE password");
-            try {
-                stmt.setString(1, adminPass);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            ResultSet rs = stmt.executeQuery();
-        } catch (SQLException e) {
-            System.out.println("Error saving user to database: " + e.getMessage());
-        }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

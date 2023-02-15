@@ -1,14 +1,12 @@
 package OnlineShopSystem.Repository;
 
-import OnlineShopSystem.Client.Admin;
+import OnlineShopSystem.Client.*;
 import OnlineShopSystem.Database.DatabaseConnection;
-import OnlineShopSystem.Client.Clients;
-import OnlineShopSystem.Client.UserMethods;
 import OnlineShopSystem.Category.Laptop;
 import OnlineShopSystem.Category.Headphone;
 import OnlineShopSystem.Category.Phone;
 import OnlineShopSystem.Category.TV;
-import OnlineShopSystem.Client.ClientMethods;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -64,7 +62,7 @@ public class Main {
                     phone.showProducts();
                     break;
                 case 7:
-                    Admin admin = AdminMethods.login();
+                    Admin admin = UserMethods.loginAdmin();
                     if(admin != null) {
                         showAdminMenu(admin);
                     }
@@ -111,21 +109,24 @@ public class Main {
             System.out.println("Client Menu");
             System.out.println("1. Add product");
             System.out.println("2. Show all users");
-            System.out.println("3. Remove users");
+            System.out.println("3. Remove a user");
             System.out.println("4. Logout");
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    ClientMethods.buyProduct(admin);
+                    AdminMethods.AddProduct(admin);
                     break;
                 case 2:
-                    ClientMethods.addBalance(admin);
+                    AdminMethods.ShowAllUsers(admin);
                     break;
                 case 3:
-                    ClientMethods.showStatus(admin);
+                    AdminMethods.RemoveUser(admin);
                     break;
                 case 4:
+                    AdminMethods.ShowAdminDetails(admin);
+                    break;
+                case 5:
                     return;
                 default:
                     System.out.println("Invalid option, try again.");
