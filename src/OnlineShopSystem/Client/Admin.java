@@ -36,4 +36,9 @@ public class Admin{
     public String getUsername() {
         return username;
     }
+
+    @Override
+    public String toString() {
+        return "Admin:\t"+ getUsername() + "\nID:\t" + getId() + "\nUsername:\t" + getUsername() + "\nPassword:\t" + getUsername();
+    }
 }

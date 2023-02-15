@@ -115,7 +115,6 @@ public class UserMethods {
                 return null;
             }
             int id = resultSet.getInt("id");
-            double balance = resultSet.getDouble("balance");
 
             return new Admin(id, username, password);
         } catch (SQLException e) {

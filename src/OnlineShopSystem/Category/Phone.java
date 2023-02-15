@@ -15,7 +15,6 @@ public class Phone extends Product implements ProductMethod{
         super(id, name, price);
     }
 
-
     @Override
     public void showProducts() {
         try {

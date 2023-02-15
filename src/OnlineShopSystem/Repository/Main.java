@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static Connection conn;
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws SQLException {
@@ -36,7 +35,8 @@ public class Main {
             System.out.println("4. Show available TVs");
             System.out.println("5. Show available headphones");
             System.out.println("6. Show available phones");
-            System.out.println("7. Exit");
+            System.out.println("7. Login as admin");
+            System.out.println("8. Exit");
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
