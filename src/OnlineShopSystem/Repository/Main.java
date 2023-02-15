@@ -90,28 +90,43 @@ public class Main {
         }
     }
     private static void showAdminMenu(Admin admin) throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+
         while (true) {
-            System.out.println("Client Menu");
+            System.out.println("Admin Menu");
             System.out.println("1. Add product");
             System.out.println("2. Show all users");
             System.out.println("3. Remove a user");
-            System.out.println("4. Show admin status");
-            System.out.println("5. Logout");
+            System.out.println("4. Show admin details");
+            System.out.println("5. Search by category");
+            System.out.println("6. Logout");
 
-            int choice = Integer.parseInt(scanner.nextLine());
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume the newline character left by nextInt()
+
             switch (choice) {
-                case 1 -> AdminMethods.AddProduct(admin);
-
-                case 2 -> AdminMethods.ShowAllUsers(admin);
-
-                case 3 -> AdminMethods.RemoveUser(admin);
-
-                case 4 -> AdminMethods.ShowAdminDetails(admin);
-
-                case 5 -> {return;}
-
-                default -> System.out.println("Invalid option, try again.");
+                case 1:
+                    AdminMethods.AddProduct(admin);
+                    break;
+                case 2:
+                    AdminMethods.ShowAllUsers(admin);
+                    break;
+                case 3:
+                    AdminMethods.RemoveUser(admin);
+                    break;
+                case 4:
+                    AdminMethods.ShowAdminDetails(admin);
+                    break;
+                case 5:
+                    AdminMethods.searchByCategory();
+                    break;
+                case 6:
+                    return;
+                default:
+                    System.out.println("Invalid option, try again.");
             }
         }
     }
+
 }
+
