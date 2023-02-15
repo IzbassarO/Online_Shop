@@ -7,9 +7,6 @@ import OnlineShopSystem.Category.Headphone;
 import OnlineShopSystem.Category.Phone;
 import OnlineShopSystem.Category.TV;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -40,39 +37,32 @@ public class Main {
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
-                case 1:
-                    UserMethods.registerUser();
-                    break;
-                case 2:
+                case 1 -> UserMethods.registerUser();
+
+                case 2 -> {
                     Clients client = UserMethods.loginUser();
                     if (client != null) {
                         showClientMenu(client);
                     }
-                    break;
-                case 3:
-                    laptop.showProducts();
-                    break;
-                case 4:
-                    tv.showProducts();
-                    break;
-                case 5:
-                    headphone.showProducts();
-                    break;
-                case 6:
-                    phone.showProducts();
-                    break;
-                case 7:
+                }
+
+                case 3 -> laptop.showProducts();
+
+                case 4 -> tv.showProducts();
+
+                case 5 -> headphone.showProducts();
+
+                case 6 -> phone.showProducts();
+
+                case 7 -> {
                     Admin admin = UserMethods.loginAdmin();
-                    if(admin != null) {
+                    if (admin != null) {
                         showAdminMenu(admin);
                     }
-                    break;
-                case 8:
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid option, try again.");
-                    break;
+                }
+                case 8 -> System.exit(0);
+
+                default -> System.out.println("Invalid option, try again.");
             }
         }
     }
@@ -87,20 +77,15 @@ public class Main {
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
-                case 1:
-                    ClientMethods.buyProduct(client);
-                    break;
-                case 2:
-                    ClientMethods.addBalance(client);
-                    break;
-                case 3:
-                    ClientMethods.showStatus(client);
-                    break;
-                case 4:
-                    return;
-                default:
-                    System.out.println("Invalid option, try again.");
-                    break;
+                case 1 -> ClientMethods.buyProduct(client);
+
+                case 2 -> ClientMethods.addBalance(client);
+
+                case 3 -> ClientMethods.showStatus(client);
+
+                case 4 -> {return;}
+
+                default -> System.out.println("Invalid option, try again.");
             }
         }
     }
@@ -114,23 +99,17 @@ public class Main {
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
-                case 1:
-                    AdminMethods.AddProduct(admin);
-                    break;
-                case 2:
-                    AdminMethods.ShowAllUsers(admin);
-                    break;
-                case 3:
-                    AdminMethods.RemoveUser(admin);
-                    break;
-                case 4:
-                    AdminMethods.ShowAdminDetails(admin);
-                    break;
-                case 5:
-                    return;
-                default:
-                    System.out.println("Invalid option, try again.");
-                    break;
+                case 1 -> AdminMethods.AddProduct(admin);
+
+                case 2 -> AdminMethods.ShowAllUsers(admin);
+
+                case 3 -> AdminMethods.RemoveUser(admin);
+
+                case 4 -> AdminMethods.ShowAdminDetails(admin);
+
+                case 5 -> {return;}
+
+                default -> System.out.println("Invalid option, try again.");
             }
         }
     }

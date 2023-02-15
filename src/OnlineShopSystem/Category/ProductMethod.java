@@ -1,5 +1,5 @@
 package OnlineShopSystem.Category;
 
 public interface ProductMethod {
-    public void showProducts();
+    void showProducts();
 }

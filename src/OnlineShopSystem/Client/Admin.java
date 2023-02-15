@@ -39,6 +39,6 @@ public class Admin{
 
     @Override
     public String toString() {
-        return "Admin:\t"+ getUsername() + "\nID:\t" + getId() + "\nUsername:\t" + getUsername() + "\nPassword:\t" + getUsername();
+        return "Admin:\t"+ getUsername() + "\nID:\t" + getId() + "\nUsername:\t" + getUsername() + "\nPassword:\t" + getPassword();
     }
 }

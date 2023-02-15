@@ -1,10 +1,9 @@
 package OnlineShopSystem.Client;
 
-import OnlineShopSystem.Category.*;
 import OnlineShopSystem.Database.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -34,20 +33,18 @@ public class AdminMethods {
     public static void searchByCategory() throws SQLException {
         System.out.println("Write the number of category:");
         System.out.println("1. Headphone");
-        System.out.println("1. Laptop");
-        System.out.println("1. TV");
-        System.out.println("1. Phone");
+        System.out.println("2. Laptop");
+        System.out.println("3. TV");
+        System.out.println("4. Phone");
 
         int x = scanner.nextInt();
         switch (x) {
-            case 1 -> user.showProducts();
+            case 1 ->
             case 2 ->
             case 3 ->
             case 4 ->
             case 5 ->
-            default -> {
-                System.out.println("There is no such category!");
-            }
+            default -> System.out.println("There is no such category!");
         }
     }
 }
