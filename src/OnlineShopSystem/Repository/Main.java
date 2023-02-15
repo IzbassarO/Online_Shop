@@ -28,10 +28,6 @@ public class Main {
         TV tv = new TV();
         Headphone headphone = new Headphone();
 
-        Laptop laptop = new Laptop();
-        Phone phone = new Phone();
-        TV tv = new TV();
-        Headphone headphone = new Headphone();
 
         // Show main menu
         while (true) {
