@@ -40,15 +40,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void saveToDB() {
-        try {
-            PreparedStatement stmt = Main.conn.prepareStatement("INSERT INTO user (username, password) values (?, ?)");
-            stmt.setString(1, this.username);
-            stmt.setString(2, this.password);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error saving user to database: " + e.getMessage());
-        }
-    }
 }

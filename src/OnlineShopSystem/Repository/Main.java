@@ -1,5 +1,6 @@
 package OnlineShopSystem.Repository;
 
+import OnlineShopSystem.Client.Admin;
 import OnlineShopSystem.Database.DatabaseConnection;
 import OnlineShopSystem.Client.Clients;
 import OnlineShopSystem.Client.UserMethods;
@@ -27,7 +28,6 @@ public class Main {
         Phone phone = new Phone();
         TV tv = new TV();
         Headphone headphone = new Headphone();
-
 
         // Show main menu
         while (true) {
@@ -64,6 +64,12 @@ public class Main {
                     phone.showProducts();
                     break;
                 case 7:
+                    Admin admin = AdminMethods.login();
+                    if(admin != null) {
+                        showAdminMenu(admin);
+                    }
+                    break;
+                case 8:
                     System.exit(0);
                     break;
                 default:
@@ -91,6 +97,33 @@ public class Main {
                     break;
                 case 3:
                     ClientMethods.showStatus(client);
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Invalid option, try again.");
+                    break;
+            }
+        }
+    }
+    private static void showAdminMenu(Admin admin) throws SQLException {
+        while (true) {
+            System.out.println("Client Menu");
+            System.out.println("1. Add product");
+            System.out.println("2. Show all users");
+            System.out.println("3. Remove users");
+            System.out.println("4. Logout");
+
+            int choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
+                case 1:
+                    ClientMethods.buyProduct(admin);
+                    break;
+                case 2:
+                    ClientMethods.addBalance(admin);
+                    break;
+                case 3:
+                    ClientMethods.showStatus(admin);
                     break;
                 case 4:
                     return;
