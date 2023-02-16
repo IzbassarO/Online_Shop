@@ -1,7 +1,5 @@
 package OnlineShopSystem.Client;
-
 import OnlineShopSystem.Database.DatabaseConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -10,40 +8,120 @@ import java.sql.ResultSet;
 
 
 
+
+
+
+
+
+
 public class AdminMethods {
     static Connection conn = DatabaseConnection.getConnection();
     static Scanner scanner = new Scanner(System.in);
     static PreparedStatement ps = null;
     public static void AddProduct(Admin admin) {
+        Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("Enter the name of the product:");
-            String name = scanner.next();
+            System.out.println("Select product category: \n1. Headphones\n2. Laptops\n3. Phones\n4. TVs");
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter the name of the headphone:");
+                    String headphoneName = scanner.next();
 
-            System.out.println("Enter the category of the product:");
-            String category = scanner.next();
+                    System.out.println("Enter the price of the headphone:");
+                    double headphonePrice = scanner.nextDouble();
 
-            System.out.println("Enter the price of the product:");
-            int price = scanner.nextInt();
+                    // Prepare statement to insert the new headphone into the database
+                    ps = conn.prepareStatement("INSERT INTO headphones(name, price) VALUES (?, ?)");
+                    ps.setString(1, headphoneName);
+                    ps.setDouble(2, headphonePrice);
 
-            // Prepare statement to insert the new product into the database
-            ps = conn.prepareStatement("INSERT INTO products(name, category, price) VALUES (?, ?, ?)");
-            ps.setString(1, name);
-            ps.setString(2, category);
-            ps.setInt(3, price);
+                    // Execute the statement to insert the new headphone
+                    int rows = ps.executeUpdate();
+                    if (rows > 0) {
+                        System.out.println("Headphone added successfully.");
+                    } else {
+                        System.out.println("Failed to add headphone.");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Enter the name of the laptop:");
+                    String laptopName = scanner.next();
 
-            // Execute the statement to insert the new product
-            int rows = ps.executeUpdate();
-            if (rows > 0) {
-                System.out.println("Product added successfully.");
-            } else {
-                System.out.println("Failed to add product.");
+                    System.out.println("Enter the price of the laptop:");
+                    double laptopPrice = scanner.nextDouble();
+
+                    // Prepare statement to insert the new laptop into the database
+                    ps = conn.prepareStatement("INSERT INTO laptops(name, price) VALUES (?, ?)");
+                    ps.setString(1, laptopName);
+                    ps.setDouble(2, laptopPrice);
+
+                    // Execute the statement to insert the new laptop
+                    rows = ps.executeUpdate();
+                    if (rows > 0) {
+                        System.out.println("Laptop added successfully.");
+                    } else {
+                        System.out.println("Failed to add laptop.");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Enter the name of the phone:");
+                    String phoneName = scanner.next();
+
+                    System.out.println("Enter the price of the phone:");
+                    double phonePrice = scanner.nextDouble();
+
+                    // Prepare statement to insert the new phone into the database
+                    ps = conn.prepareStatement("INSERT INTO phones(name, price) VALUES (?, ?)");
+                    ps.setString(1, phoneName);
+                    ps.setDouble(2, phonePrice);
+
+                    // Execute the statement to insert the new phone
+                    rows = ps.executeUpdate();
+                    if (rows > 0) {
+                        System.out.println("Phone added successfully.");
+                    } else {
+                        System.out.println("Failed to add phone.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Enter the name of the TV:");
+                    String tvName = scanner.next();
+
+                    System.out.println("Enter the price of the TV:");
+                    double tvPrice = scanner.nextDouble();
+
+                    // Prepare statement to insert the new TV into the database
+                    ps = conn.prepareStatement("INSERT INTO tvs(name, price) VALUES (?, ?)");
+                    ps.setString(1, tvName);
+                    ps.setDouble(2, tvPrice);
+
+                    // Execute the statement to insert the new TV
+                    rows = ps.executeUpdate();
+                    if (rows > 0) {
+                        System.out.println("TV added successfully.");
+                    } else {
+                        System.out.println("Failed to add TV.");
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
             }
         } catch (SQLException e) {
             System.err.println("An error occurred while trying to add a product: " + e.getMessage());
         }
     }
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public static void ShowAllUsers(Admin admin) throws SQLException {
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM clients");
         ResultSet rs = ps.executeQuery();
@@ -52,10 +130,8 @@ public class AdminMethods {
             System.out.println("No users found.");
             return;
         }
-
         System.out.println("All users:");
         System.out.println("ID\tUsername\tPassword\tBalance");
-
         while (rs.next()) {
             int id = rs.getInt("id");
             String username = rs.getString("username");
@@ -63,10 +139,14 @@ public class AdminMethods {
             double balance = rs.getDouble("balance");
             System.out.println(id + "\t" + username + "\t" + password + "\t" + balance);
         }
+        
+        
+        
+        
+        
     }
-
-
     public static void RemoveUser(Admin admin) throws SQLException {
+        ShowAllUsers(admin);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the ID of the user to be removed:");
         int userId = scanner.nextInt();
@@ -80,41 +160,58 @@ public class AdminMethods {
         }
     }
 
-
+    
+    
+    
+    
+    
+    
+   
     public static void ShowAdminDetails(Admin admin) {
-        admin.toString();
+        System.out.println("Admin:\t"+ admin.getUsername() + "\nID:\t" + admin.getId() + "\nUsername:\t" + admin.getUsername() + "\nPassword:\t" + admin.getPassword());
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public static void searchByCategory() throws SQLException {
         System.out.println("Write the number of category:");
-        System.out.println("1. Headphone");
-        System.out.println("2. Laptop");
-        System.out.println("3. TV");
-        System.out.println("4. Phone");
+        System.out.println("1. Headphones");
+        System.out.println("2. Laptops");
+        System.out.println("3. Phones");
+        System.out.println("4. TVs");
 
         int category = scanner.nextInt();
         String categoryStr;
 
         switch (category) {
             case 1:
-                categoryStr = "Headphone";
+                categoryStr = "headphones";
                 break;
             case 2:
-                categoryStr = "Laptop";
+                categoryStr = "laptops";
                 break;
             case 3:
-                categoryStr = "TV";
+                categoryStr = "phones";
                 break;
             case 4:
-                categoryStr = "Phone";
+                categoryStr = "tvs";
                 break;
             default:
                 System.out.println("There is no such category!");
                 return;
         }
 
-        String query = "SELECT * FROM products WHERE category = ?";
+        
+        
+        
+        String query = "SELECT * FROM " + categoryStr;
         ps = conn.prepareStatement(query);
-        ps.setString(1, categoryStr);
         ResultSet rs = ps.executeQuery();
 
         if (!rs.isBeforeFirst()) {
@@ -128,11 +225,8 @@ public class AdminMethods {
         while (rs.next()) {
             int id = rs.getInt("id");
             String name = rs.getString("name");
-            int price = rs.getInt("price");
+            double price = rs.getDouble("price");
             System.out.println(id + "\t" + name + "\t" + price);
         }
     }
-
-
-
 }
