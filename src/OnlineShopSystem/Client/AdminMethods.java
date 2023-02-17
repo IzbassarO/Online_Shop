@@ -6,14 +6,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.sql.ResultSet;
 
-
-
-
-
-
-
-
-
 public class AdminMethods {
     static Connection conn = DatabaseConnection.getConnection();
     static Scanner scanner = new Scanner(System.in);
@@ -23,18 +15,19 @@ public class AdminMethods {
         try {
             System.out.println("Select product category: \n1. Headphones\n2. Laptops\n3. Phones\n4. TVs");
             int choice = scanner.nextInt();
+            scanner.nextLine();
             switch (choice) {
                 case 1:
                     System.out.println("Enter the name of the headphone:");
-                    String headphoneName = scanner.next();
+                    String headphoneName = scanner.nextLine();
 
                     System.out.println("Enter the price of the headphone:");
-                    double headphonePrice = scanner.nextDouble();
+                    String headphonePrice = scanner.nextLine();
 
                     // Prepare statement to insert the new headphone into the database
                     ps = conn.prepareStatement("INSERT INTO headphones(name, price) VALUES (?, ?)");
                     ps.setString(1, headphoneName);
-                    ps.setDouble(2, headphonePrice);
+                    ps.setString(2, headphonePrice);
 
                     // Execute the statement to insert the new headphone
                     int rows = ps.executeUpdate();
@@ -46,15 +39,15 @@ public class AdminMethods {
                     break;
                 case 2:
                     System.out.println("Enter the name of the laptop:");
-                    String laptopName = scanner.next();
+                    String laptopName = scanner.nextLine();
 
                     System.out.println("Enter the price of the laptop:");
-                    double laptopPrice = scanner.nextDouble();
+                    String laptopPrice = scanner.nextLine();
 
                     // Prepare statement to insert the new laptop into the database
                     ps = conn.prepareStatement("INSERT INTO laptops(name, price) VALUES (?, ?)");
                     ps.setString(1, laptopName);
-                    ps.setDouble(2, laptopPrice);
+                    ps.setString(2, laptopPrice);
 
                     // Execute the statement to insert the new laptop
                     rows = ps.executeUpdate();
@@ -69,12 +62,12 @@ public class AdminMethods {
                     String phoneName = scanner.next();
 
                     System.out.println("Enter the price of the phone:");
-                    double phonePrice = scanner.nextDouble();
+                    String phonePrice = scanner.nextLine();
 
                     // Prepare statement to insert the new phone into the database
                     ps = conn.prepareStatement("INSERT INTO phones(name, price) VALUES (?, ?)");
                     ps.setString(1, phoneName);
-                    ps.setDouble(2, phonePrice);
+                    ps.setString(2, phonePrice);
 
                     // Execute the statement to insert the new phone
                     rows = ps.executeUpdate();
@@ -89,12 +82,12 @@ public class AdminMethods {
                     String tvName = scanner.next();
 
                     System.out.println("Enter the price of the TV:");
-                    double tvPrice = scanner.nextDouble();
+                    String tvPrice = scanner.nextLine();
 
                     // Prepare statement to insert the new TV into the database
                     ps = conn.prepareStatement("INSERT INTO tvs(name, price) VALUES (?, ?)");
                     ps.setString(1, tvName);
-                    ps.setDouble(2, tvPrice);
+                    ps.setString(2, tvPrice);
 
                     // Execute the statement to insert the new TV
                     rows = ps.executeUpdate();
