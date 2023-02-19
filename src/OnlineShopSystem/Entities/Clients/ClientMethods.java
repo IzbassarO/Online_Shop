@@ -1,4 +1,4 @@
-package OnlineShopSystem.Client;
+package OnlineShopSystem.Entities.Clients;
 
 import OnlineShopSystem.Category.Headphone;
 import OnlineShopSystem.Category.Laptop;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ClientMethods {
-    public static void buyProduct(OnlineShopSystem.Client.Clients client) throws SQLException {
+    public static void buyProduct(Clients client) throws SQLException {
         // Get database connection
         Connection conn = DatabaseConnection.getConnection();
 
@@ -93,7 +93,7 @@ public class ClientMethods {
         }
     }
 
-    public static void addBalance(OnlineShopSystem.Client.Clients client) throws SQLException {
+    public static void addBalance(Clients client) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter amount to add: ");
         double amount = scanner.nextDouble();
@@ -137,7 +137,7 @@ public class ClientMethods {
         System.out.println("Balance added successfully. Now " + name + " has " + (currentBalance + amount));
     }
 
-    public static void showStatus(OnlineShopSystem.Client.Clients client) {
+    public static void showStatus(Clients client) {
         System.out.println("ID: " + client.getId()  + "\nUsername: " + client.getUsername()  + "\nPassword: " + client.getPassword() + "\nBalance: " + client.getBalance());
     }
 }

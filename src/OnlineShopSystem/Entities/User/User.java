@@ -1,12 +1,4 @@
-package OnlineShopSystem.Client;
-
-import OnlineShopSystem.Category.Headphone;
-import OnlineShopSystem.Category.Laptop;
-import OnlineShopSystem.Category.Phone;
-import OnlineShopSystem.Category.TV;
-import OnlineShopSystem.Repository.Main;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+package OnlineShopSystem.Entities.User;
 
 public class User {
     private int id;

@@ -1,7 +1,8 @@
 package OnlineShopSystem.Category;
 
+import OnlineShopSystem.Category.CategoryMethods.Product;
+import OnlineShopSystem.Category.CategoryMethods.ProductMethod;
 import OnlineShopSystem.Database.DatabaseConnection;
-import OnlineShopSystem.Repository.Main;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,12 +10,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Headphone extends Product implements ProductMethod {
+    private String category;
+
     public Headphone() {}
 
     public Headphone(int id, String name, double price) {
         super(id, name, price);
     }
-
 
     @Override
     public void showProducts() {
@@ -24,15 +26,16 @@ public class Headphone extends Product implements ProductMethod {
 
             Statement stmt = conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM headphones");
-            System.out.println("ID\tName\tPrice");
+            System.out.println("ID\tName\tPrice\tCategory");
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
-                System.out.println(id + "\t" + name + "\t" + price);
+                Headphone headphone = new Headphone(id, name, price);
+                System.out.println(headphone.getId() + "\t" + headphone.getName() + "\t" + headphone.getPrice());
             }
         } catch (SQLException e) {
-            System.out.println("Error displaying TVs: " + e.getMessage());
+            System.out.println("Error displaying phones: " + e.getMessage());
         }
     }
 }

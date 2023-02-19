@@ -1,20 +1,13 @@
-package OnlineShopSystem.Client;
-
-import OnlineShopSystem.Repository.Main;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Scanner;
+package OnlineShopSystem.Entities.Admin;
 
 public class Admin{
     private int id;
     private String username;
     private String password;
     public Admin(int id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+        setId(id);
+        setUsername(username);
+        setPassword(password);
     }
 
     public void setPassword(String password) {
@@ -23,6 +16,10 @@ public class Admin{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {

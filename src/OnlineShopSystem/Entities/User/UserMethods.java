@@ -1,5 +1,8 @@
-package OnlineShopSystem.Client;
+package OnlineShopSystem.Entities.User;
 import OnlineShopSystem.Database.DatabaseConnection;
+import OnlineShopSystem.Entities.Admin.Admin;
+import OnlineShopSystem.Entities.Clients.Clients;
+import OnlineShopSystem.Entities.User.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

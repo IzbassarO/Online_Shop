@@ -1,7 +1,8 @@
 package OnlineShopSystem.Category;
 
+import OnlineShopSystem.Category.CategoryMethods.Product;
+import OnlineShopSystem.Category.CategoryMethods.ProductMethod;
 import OnlineShopSystem.Database.DatabaseConnection;
-import OnlineShopSystem.Repository.Main;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class TV extends Product implements ProductMethod {
+    private String category;
+
     public TV() {}
 
     public TV(int id, String name, double price) {
@@ -23,15 +26,16 @@ public class TV extends Product implements ProductMethod {
 
             Statement stmt = conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM tvs");
-            System.out.println("ID\tName\tPrice");
+            System.out.println("ID\tName\tPrice\tCategory");
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
-                System.out.println(id + "\t" + name + "\t" + price);
+                TV tv = new TV(id, name, price);
+                System.out.println(tv.getId() + "\t" + tv.getName() + "\t" + tv.getPrice());
             }
         } catch (SQLException e) {
-            System.out.println("Error displaying TVs: " + e.getMessage());
+            System.out.println("Error displaying phones: " + e.getMessage());
         }
     }
 }

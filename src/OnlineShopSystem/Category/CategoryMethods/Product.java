@@ -1,5 +1,8 @@
-package OnlineShopSystem.Category;
-public abstract class Product {
+package OnlineShopSystem.Category.CategoryMethods;
+
+import OnlineShopSystem.Category.CategoryMethods.ProductMethod;
+
+public abstract class Product implements ProductMethod {
     private int id;
     private String name;
     private double price;

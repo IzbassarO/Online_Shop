@@ -1,5 +1,7 @@
-package OnlineShopSystem.Client;
+package OnlineShopSystem.Entities.Admin;
 import OnlineShopSystem.Database.DatabaseConnection;
+import OnlineShopSystem.Entities.Admin.Admin;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -104,17 +106,7 @@ public class AdminMethods {
             System.err.println("An error occurred while trying to add a product: " + e.getMessage());
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     public static void ShowAllUsers(Admin admin) throws SQLException {
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM clients");
         ResultSet rs = ps.executeQuery();
@@ -132,12 +124,8 @@ public class AdminMethods {
             double balance = rs.getDouble("balance");
             System.out.println(id + "\t" + username + "\t" + password + "\t" + balance);
         }
-        
-        
-        
-        
-        
     }
+
     public static void RemoveUser(Admin admin) throws SQLException {
         ShowAllUsers(admin);
         Scanner scanner = new Scanner(System.in);
@@ -153,26 +141,11 @@ public class AdminMethods {
         }
     }
 
-    
-    
-    
-    
-    
-    
-   
-    public static void ShowAdminDetails(Admin admin) {
+    public static void ShowDetails(Admin admin) {
         System.out.println("Admin:\t"+ admin.getUsername() + "\nID:\t" + admin.getId() + "\nUsername:\t" + admin.getUsername() + "\nPassword:\t" + admin.getPassword());
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public static void searchByCategory() throws SQLException {
+
+    public static void SearchByCategory() throws SQLException {
         System.out.println("Write the number of category:");
         System.out.println("1. Headphones");
         System.out.println("2. Laptops");
@@ -199,10 +172,6 @@ public class AdminMethods {
                 System.out.println("There is no such category!");
                 return;
         }
-
-        
-        
-        
         String query = "SELECT * FROM " + categoryStr;
         ps = conn.prepareStatement(query);
         ResultSet rs = ps.executeQuery();
