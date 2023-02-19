@@ -59,7 +59,7 @@ public class AdminMethods {
                     break;
                 case 3:
                     System.out.println("Enter the name of the phone:");
-                    String phoneName = scanner.next();
+                    String phoneName = scanner.nextLine();
 
                     System.out.println("Enter the price of the phone:");
                     String phonePrice = scanner.nextLine();
@@ -79,7 +79,7 @@ public class AdminMethods {
                     break;
                 case 4:
                     System.out.println("Enter the name of the TV:");
-                    String tvName = scanner.next();
+                    String tvName = scanner.nextLine();
 
                     System.out.println("Enter the price of the TV:");
                     String tvPrice = scanner.nextLine();

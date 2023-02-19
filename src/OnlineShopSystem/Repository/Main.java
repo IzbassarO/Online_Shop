@@ -105,28 +105,15 @@ public class Main {
             scanner.nextLine(); // consume the newline character left by nextInt()
 
             switch (choice) {
-                case 1:
-                    AdminMethods.AddProduct(admin);
-                    break;
-                case 2:
-                    AdminMethods.ShowAllUsers(admin);
-                    break;
-                case 3:
+                case 1 -> AdminMethods.AddProduct(admin);
+                case 2 -> AdminMethods.ShowAllUsers(admin);
+                case 3 ->
                     AdminMethods.RemoveUser(admin);
-                    break;
-                case 4:
-                    AdminMethods.ShowAdminDetails(admin);
-                    break;
-                case 5:
-                    AdminMethods.searchByCategory();
-                    break;
-                case 6:
-                    return;
-                default:
-                    System.out.println("Invalid option, try again.");
+                case 4 -> AdminMethods.ShowAdminDetails(admin);
+                case 5 -> AdminMethods.searchByCategory();
+                case 6 -> {return;}
+                default -> System.out.println("Invalid option, try again.");
             }
         }
     }
-
 }
-
