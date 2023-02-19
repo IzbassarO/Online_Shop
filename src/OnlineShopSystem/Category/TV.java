@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class TV extends Product implements ProductMethod {
-    private String category;
-
     public TV() {}
 
     public TV(int id, String name, double price) {

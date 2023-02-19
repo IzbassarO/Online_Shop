@@ -1,7 +1,4 @@
 package OnlineShopSystem.Category.CategoryMethods;
-
-import OnlineShopSystem.Category.CategoryMethods.ProductMethod;
-
 public abstract class Product implements ProductMethod {
     private int id;
     private String name;
@@ -10,9 +7,9 @@ public abstract class Product implements ProductMethod {
     public Product() {}
 
     public Product(int id, String name, double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+        setId(id);
+        setName(name);
+        setPrice(price);
     }
 
     public int getId() {

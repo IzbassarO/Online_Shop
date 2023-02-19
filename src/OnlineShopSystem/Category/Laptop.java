@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Laptop extends Product implements ProductMethod {
-    private String category;
-
     public Laptop() {}
 
     public Laptop(int id, String name, double price) {

@@ -1,6 +1,5 @@
 package OnlineShopSystem.Entities.Admin;
 import OnlineShopSystem.Database.DatabaseConnection;
-import OnlineShopSystem.Entities.Admin.Admin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,13 +12,18 @@ public class AdminMethods {
     static Scanner scanner = new Scanner(System.in);
     static PreparedStatement ps = null;
     public static void AddProduct(Admin admin) {
+        if (!admin.isAdmin()) {
+            System.out.println("You don't have permission to add a product.");
+            return;
+        }
+
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.println("Select product category: \n1. Headphones\n2. Laptops\n3. Phones\n4. TVs");
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
-                case 1:
+                case 1 -> {
                     System.out.println("Enter the name of the headphone:");
                     String headphoneName = scanner.nextLine();
 
@@ -38,8 +42,8 @@ public class AdminMethods {
                     } else {
                         System.out.println("Failed to add headphone.");
                     }
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     System.out.println("Enter the name of the laptop:");
                     String laptopName = scanner.nextLine();
 
@@ -52,14 +56,14 @@ public class AdminMethods {
                     ps.setString(2, laptopPrice);
 
                     // Execute the statement to insert the new laptop
-                    rows = ps.executeUpdate();
+                    int rows = ps.executeUpdate();
                     if (rows > 0) {
                         System.out.println("Laptop added successfully.");
                     } else {
                         System.out.println("Failed to add laptop.");
                     }
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     System.out.println("Enter the name of the phone:");
                     String phoneName = scanner.nextLine();
 
@@ -72,14 +76,14 @@ public class AdminMethods {
                     ps.setString(2, phonePrice);
 
                     // Execute the statement to insert the new phone
-                    rows = ps.executeUpdate();
+                    int rows = ps.executeUpdate();
                     if (rows > 0) {
                         System.out.println("Phone added successfully.");
                     } else {
                         System.out.println("Failed to add phone.");
                     }
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     System.out.println("Enter the name of the TV:");
                     String tvName = scanner.nextLine();
 
@@ -92,22 +96,24 @@ public class AdminMethods {
                     ps.setString(2, tvPrice);
 
                     // Execute the statement to insert the new TV
-                    rows = ps.executeUpdate();
+                    int rows = ps.executeUpdate();
                     if (rows > 0) {
                         System.out.println("TV added successfully.");
                     } else {
                         System.out.println("Failed to add TV.");
                     }
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
+                }
             }
         } catch (SQLException e) {
-            System.err.println("An error occurred while trying to add a product: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
     public static void ShowAllUsers(Admin admin) throws SQLException {
+        if (!admin.isAdmin()) {
+            System.out.println("You don't have permission to view all users.");
+            return;
+        }
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM clients");
         ResultSet rs = ps.executeQuery();
 
@@ -127,6 +133,10 @@ public class AdminMethods {
     }
 
     public static void RemoveUser(Admin admin) throws SQLException {
+        if (!admin.isAdmin()) {
+            System.out.println("You don't have permission to remove a product.");
+            return;
+        }
         ShowAllUsers(admin);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the ID of the user to be removed:");
@@ -156,21 +166,14 @@ public class AdminMethods {
         String categoryStr;
 
         switch (category) {
-            case 1:
-                categoryStr = "headphones";
-                break;
-            case 2:
-                categoryStr = "laptops";
-                break;
-            case 3:
-                categoryStr = "phones";
-                break;
-            case 4:
-                categoryStr = "tvs";
-                break;
-            default:
+            case 1 -> categoryStr = "headphones";
+            case 2 -> categoryStr = "laptops";
+            case 3 -> categoryStr = "phones";
+            case 4 -> categoryStr = "tvs";
+            default -> {
                 System.out.println("There is no such category!");
                 return;
+            }
         }
         String query = "SELECT * FROM " + categoryStr;
         ps = conn.prepareStatement(query);
