@@ -6,7 +6,9 @@ import OnlineShopSystem.Category.Phone;
 import OnlineShopSystem.Category.TV;
 import OnlineShopSystem.Entities.Clients.ClientMethods;
 import OnlineShopSystem.Entities.Clients.Clients;
-import OnlineShopSystem.Entities.User.UserMethods;
+import OnlineShopSystem.Entities.User.Login;
+import OnlineShopSystem.Entities.User.Registration;
+import OnlineShopSystem.Entities.User.LoginAdmin;
 import OnlineShopSystem.Entities.Admin.Admin;
 import OnlineShopSystem.Entities.Admin.AdminMethods;
 import java.sql.SQLException;
@@ -35,9 +37,9 @@ class MainApplication {
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
-                case 1 -> UserMethods.registerUser();
+                case 1 -> Registration.registerUser();
                 case 2 -> {
-                    Clients client = UserMethods.loginUser();
+                    Clients client = Login.loginUser();
                     if (client != null) {
                         showClientMenu(client);
                     }
@@ -47,7 +49,7 @@ class MainApplication {
                 case 5 -> headphone.showProducts();
                 case 6 -> phone.showProducts();
                 case 7 -> {
-                    Admin admin = UserMethods.loginAdmin();
+                    Admin admin = LoginAdmin.loginAdmin();
                     if (admin != null) {
                         showAdminMenu(admin);
                     }
@@ -71,9 +73,7 @@ class MainApplication {
                 case 1 -> ClientMethods.buyProduct(client);
                 case 2 -> ClientMethods.addBalance(client);
                 case 3 -> ClientMethods.showStatus(client);
-                case 4 -> {
-                    return;
-                }
+                case 4 -> {return;}
                 default -> System.out.println("Invalid option, try again.");
             }
         }
