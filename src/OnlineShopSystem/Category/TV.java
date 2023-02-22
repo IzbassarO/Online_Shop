@@ -3,7 +3,6 @@ package OnlineShopSystem.Category;
 import OnlineShopSystem.Category.CategoryMethods.Product;
 import OnlineShopSystem.Category.CategoryMethods.ProductMethod;
 import OnlineShopSystem.Database.DatabaseConnection;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
