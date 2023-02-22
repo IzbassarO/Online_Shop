@@ -1,6 +1,6 @@
 package OnlineShopSystem.Entities.Admin;
-import OnlineShopSystem.Database.DatabaseConnection;
 
+import OnlineShopSystem.Database.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -151,9 +151,13 @@ public class AdminMethods {
         }
     }
 
-    public static void ShowDetails(Admin admin) {
-        System.out.println("Admin:\t"+ admin.getUsername() + "\nID:\t" + admin.getId() + "\nUsername:\t" + admin.getUsername() + "\nPassword:\t" + admin.getPassword());
-    }
+    public static void showStatus(Admin admin) throws SQLException {
+        Admin dbClient = Admin.getUserById(admin.getId());
+        if (dbClient != null) {
+            System.out.println("ID: " + dbClient.getId()  + "\nUsername: " + dbClient.getUsername()  + "\nPassword: " + dbClient.getPassword());
+        } else {
+            System.out.println("Admin not found in the database.");
+        }    }
 
     public static void SearchByCategory() throws SQLException {
         System.out.println("Write the number of category:");

@@ -1,28 +1,25 @@
-package OnlineShopSystem.Entities.Admin;
+package OnlineShopSystem.Entities.Clients;
 
-import OnlineShopSystem.Database.DatabaseConnection;
-import OnlineShopSystem.Entities.User.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Admin extends User{
+import OnlineShopSystem.Entities.User.User;
+import OnlineShopSystem.Database.DatabaseConnection;
+
+public class Client extends User {
     private final int id;
     private final String username;
     private final String password;
-    private final boolean isAdmin;
+    private double balance;
 
-    public Admin(int id, String username, String password) {
+    public Client(int id, String username, String password, double balance) {
         super(id, username, password);
         this.id = id;
-        this.isAdmin = true;
         this.username = username;
         this.password = password;
-    }
-
-    public boolean isAdmin() {
-        return this.isAdmin;
+        this.balance = balance;
     }
 
     public int getId() {
@@ -37,25 +34,34 @@ public class Admin extends User{
         return password;
     }
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     // Get a client from the database by ID
-    public static Admin getUserById(int id) throws SQLException {
+    public static Client getUserById(int id) throws SQLException {
         // Get database connection
         Connection conn = DatabaseConnection.getConnection();
 
         // Create a prepared statement
-        String sql = "SELECT * FROM admin WHERE id = ?";
+        String sql = "SELECT * FROM clients WHERE id = ?";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setInt(1, id);
 
         // Execute the query
         ResultSet rs = stmt.executeQuery();
 
-        // Get the admin information from the result set
+        // Get the client information from the result set
         if (rs.next()) {
-            int adminId = rs.getInt("id");
-            String adminUsername = rs.getString("username");
-            String adminPassword = rs.getString("password");
-            return new Admin(adminId, adminUsername, adminPassword);
+            int clientId = rs.getInt("id");
+            String clientUsername = rs.getString("username");
+            String clientPassword = rs.getString("password");
+            double clientBalance = rs.getDouble("balance");
+            return new Client(clientId, clientUsername, clientPassword, clientBalance);
         } else {
             return null;
         }

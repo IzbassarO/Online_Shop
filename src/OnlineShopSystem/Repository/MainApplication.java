@@ -5,12 +5,13 @@ import OnlineShopSystem.Category.Laptop;
 import OnlineShopSystem.Category.Phone;
 import OnlineShopSystem.Category.TV;
 import OnlineShopSystem.Entities.Clients.ClientMethods;
-import OnlineShopSystem.Entities.Clients.Clients;
-import OnlineShopSystem.Entities.User.Login;
-import OnlineShopSystem.Entities.User.Registration;
-import OnlineShopSystem.Entities.User.LoginAdmin;
+import OnlineShopSystem.Entities.Clients.Client;
+import OnlineShopSystem.Entities.User.LoginController;
+import OnlineShopSystem.Entities.User.RegistrationManager;
 import OnlineShopSystem.Entities.Admin.Admin;
 import OnlineShopSystem.Entities.Admin.AdminMethods;
+import OnlineShopSystem.Entities.User.User;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -37,11 +38,14 @@ class MainApplication {
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
-                case 1 -> Registration.registerUser();
+                case 1 -> RegistrationManager.registerUser();
                 case 2 -> {
-                    Clients client = Login.loginUser();
-                    if (client != null) {
+                    User user = LoginController.loginUser("clients");
+                    if (user instanceof Client) {
+                        Client client = (Client) user;
                         showClientMenu(client);
+                    } else {
+                        System.out.println("Invalid user type.");
                     }
                 }
                 case 3 -> laptop.showProducts();
@@ -49,9 +53,12 @@ class MainApplication {
                 case 5 -> headphone.showProducts();
                 case 6 -> phone.showProducts();
                 case 7 -> {
-                    Admin admin = LoginAdmin.loginAdmin();
-                    if (admin != null) {
+                    User user = LoginController.loginUser("admin");
+                    if (user instanceof Admin) {
+                        Admin admin = (Admin) user;
                         showAdminMenu(admin);
+                    } else {
+                        System.out.println("Invalid user type.");
                     }
                 }
                 case 8 -> System.exit(0);
@@ -60,7 +67,7 @@ class MainApplication {
         }
     }
 
-    private static void showClientMenu(Clients client) throws SQLException {
+    private static void showClientMenu(Client client) throws SQLException {
         while (true) {
             System.out.println("Client Menu");
             System.out.println("1. Buy product");
@@ -98,7 +105,7 @@ class MainApplication {
                 case 1 -> AdminMethods.AddProduct(admin);
                 case 2 -> AdminMethods.ShowAllUsers(admin);
                 case 3 -> AdminMethods.RemoveUser(admin);
-                case 4 -> AdminMethods.ShowDetails(admin);
+                case 4 -> AdminMethods.showStatus(admin);
                 case 5 -> AdminMethods.SearchByCategory();
                 case 6 -> {return;}
                 default -> System.out.println("Invalid option, try again.");

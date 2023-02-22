@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ClientMethods {
-    public static void buyProduct(Clients client) throws SQLException {
+    public static void buyProduct(Client client) throws SQLException {
         // Get database connection
         Connection conn = DatabaseConnection.getConnection();
 
@@ -32,22 +32,22 @@ public class ClientMethods {
         int choice = scanner.nextInt();
         String category = "";
         switch (choice) {
-            case 1:
+            case 1 -> {
                 category = "laptops";
                 laptop.showProducts();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 category = "tvs";
                 tv.showProducts();
-                break;
-            case 3:
+            }
+            case 3 -> {
                 category = "headphones";
                 headphone.showProducts();
-                break;
-            case 4:
+            }
+            case 4 -> {
                 category = "phones";
                 phone.showProducts();
-                break;
+            }
         }
         System.out.println("Enter product id: ");
         int productId = scanner.nextInt();
@@ -93,7 +93,7 @@ public class ClientMethods {
         }
     }
 
-    public static void addBalance(Clients client) throws SQLException {
+    public static void addBalance(Client client) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter amount to add: ");
         double amount = scanner.nextDouble();
@@ -136,8 +136,12 @@ public class ClientMethods {
 
         System.out.println("Balance added successfully. Now " + name + " has " + (currentBalance + amount));
     }
-
-    public static void showStatus(Clients client) {
-        System.out.println("ID: " + client.getId()  + "\nUsername: " + client.getUsername()  + "\nPassword: " + client.getPassword() + "\nBalance: " + client.getBalance());
+    public static void showStatus(Client client) throws SQLException {
+        Client dbClient = Client.getUserById(client.getId());
+        if (dbClient != null) {
+            System.out.println("ID: " + dbClient.getId()  + "\nUsername: " + dbClient.getUsername()  + "\nPassword: " + dbClient.getPassword() + "\nBalance: " + dbClient.getBalance());
+        } else {
+            System.out.println("Client not found in the database.");
+        }
     }
 }

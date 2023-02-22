@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Registration {
+public class RegistrationManager {
     public static User registerUser() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter username: ");
@@ -45,7 +45,6 @@ public class Registration {
         }
 
         int id = 0;
-        double balance = 0.0;
 
         // Get the id and balance of the new user
         try {
@@ -55,13 +54,12 @@ public class Registration {
             ResultSet resultSet = getUserStmt.executeQuery();
             if (resultSet.next()) {
                 id = resultSet.getInt("id");
-                balance = resultSet.getDouble("balance");
             }
         } catch (SQLException e) {
             System.out.println("Error getting user from the database: " + e.getMessage());
             return null;
         }
 
-        return new User(id, username, password, balance);
+        return new User(id, username, password);
     }
 }
