@@ -12,6 +12,7 @@ import OnlineShopSystem.Entities.Admin.Admin;
 import OnlineShopSystem.Entities.Admin.AdminMethods;
 import OnlineShopSystem.Entities.User.User;
 
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -23,6 +24,7 @@ class MainApplication {
     private static final TV tv = new TV();
     private static final Headphone headphone = new Headphone();
 
+    
     public static void run() throws SQLException {
         // Show main menu
         while (true) {
@@ -34,7 +36,7 @@ class MainApplication {
             System.out.println("5. Show available headphones");
             System.out.println("6. Show available phones");
             System.out.println("7. Login as admin");
-            System.out.println("8. Exit");
+            System.out.println("8. Exit.");
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
@@ -67,6 +69,7 @@ class MainApplication {
         }
     }
 
+    
     private static void showClientMenu(Client client) throws SQLException {
         while (true) {
             System.out.println("Client Menu");
@@ -86,6 +89,8 @@ class MainApplication {
         }
     }
 
+    
+    
     private static void showAdminMenu(Admin admin) throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
@@ -101,6 +106,8 @@ class MainApplication {
             int choice = scanner.nextInt();
             scanner.nextLine(); // consume the newline character left by nextInt()
 
+            
+            
             switch (choice) {
                 case 1 -> AdminMethods.AddProduct(admin);
                 case 2 -> AdminMethods.ShowAllUsers(admin);
