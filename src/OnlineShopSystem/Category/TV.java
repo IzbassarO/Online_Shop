@@ -23,16 +23,18 @@ public class TV extends Product implements ProductMethod {
 
             Statement stmt = conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM tvs");
-            System.out.println("ID\tName\tPrice\tCategory");
+            System.out.println("ID\tName\t\t\t\t\t\t\tPrice");
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
                 TV tv = new TV(id, name, price);
-                System.out.println(tv.getId() + "\t" + tv.getName() + "\t$" + tv.getPrice());
+                System.out.printf("%d\t%-30s\t$%.2f\n", tv.getId(), tv.getName(), tv.getPrice());
             }
         } catch (SQLException e) {
             System.out.println("Error displaying phones: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }

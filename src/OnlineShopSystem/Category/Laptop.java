@@ -24,16 +24,18 @@ public class Laptop extends Product implements ProductMethod {
 
             Statement stmt = conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM laptops");
-            System.out.println("ID\tName\tPrice\tCategory");
+            System.out.println("ID\tName\t\t\t\t\t\t\tPrice");
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
                 Laptop laptop = new Laptop(id, name, price);
-                System.out.println(laptop.getId() + "\t" + laptop.getName() + "\t$" + laptop.getPrice());
+                System.out.printf("%d\t%-30s\t$%.2f\n", laptop.getId(), laptop.getName(), laptop.getPrice());
             }
         } catch (SQLException e) {
             System.out.println("Error displaying phones: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
