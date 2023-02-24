@@ -23,7 +23,6 @@ class MainApplication {
     private static final Phone phone = new Phone();
     private static final TV tv = new TV();
     private static final Headphone headphone = new Headphone();
-
     
     public static void run() throws SQLException {
         // Show main menu
@@ -68,7 +67,6 @@ class MainApplication {
             }
         }
     }
-
     
     private static void showClientMenu(Client client) throws SQLException {
         while (true) {
@@ -89,8 +87,6 @@ class MainApplication {
         }
     }
 
-    
-    
     private static void showAdminMenu(Admin admin) throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
@@ -106,8 +102,6 @@ class MainApplication {
             int choice = scanner.nextInt();
             scanner.nextLine(); // consume the newline character left by nextInt()
 
-            
-            
             switch (choice) {
                 case 1 -> AdminMethods.AddProduct(admin);
                 case 2 -> AdminMethods.ShowAllUsers(admin);
