@@ -30,7 +30,7 @@ public class Phone extends Product implements ProductMethod {
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
                 Phone phone = new Phone(id, name, price);
-                System.out.println(phone.getId() + "\t" + phone.getName() + "\t" + phone.getPrice());
+                System.out.println(phone.getId() + "\t" + phone.getName() + "\t$" + phone.getPrice());
             }
         } catch (SQLException e) {
             System.out.println("Error displaying phones: " + e.getMessage());

@@ -60,7 +60,7 @@ public class ClientMethods {
         }
         ResultSet rs = stmt.executeQuery();
 
-        double productPrice = 0;
+        double productPrice;
         if (rs.next()) {
             productPrice = rs.getInt("price");
         } else {
@@ -85,7 +85,7 @@ public class ClientMethods {
             PreparedStatement stmt4 = conn.prepareStatement("UPDATE clients SET balance = ? WHERE id = ?");
             stmt4.setDouble(1, client.getBalance() - productPrice);
             stmt4.setInt(2, client.getId());
-            System.out.println("Product bought successfully. Now you have " + (client.getBalance() - productPrice) + " balance");
+            System.out.println("Product bought successfully. Now you have $" + (client.getBalance() - productPrice) + " in balance");
 
             stmt4.executeUpdate();
         } catch (SQLException e) {
@@ -134,12 +134,12 @@ public class ClientMethods {
             System.out.println("Error updating client's information in the database: " + e.getMessage());
         }
 
-        System.out.println("Balance added successfully. Now " + name + " has " + (currentBalance + amount));
+        System.out.println("Balance added successfully. Now " + name + " has $" + (currentBalance + amount));
     }
     public static void showStatus(Client client) throws SQLException {
         Client dbClient = Client.getUserById(client.getId());
         if (dbClient != null) {
-            System.out.println("ID: " + dbClient.getId()  + "\nUsername: " + dbClient.getUsername()  + "\nPassword: " + dbClient.getPassword() + "\nBalance: " + dbClient.getBalance());
+            System.out.println("ID: " + dbClient.getId()  + "\nUsername: " + dbClient.getUsername()  + "\nPassword: " + dbClient.getPassword() + "\nBalance: $" + dbClient.getBalance());
         } else {
             System.out.println("Client not found in the database.");
         }

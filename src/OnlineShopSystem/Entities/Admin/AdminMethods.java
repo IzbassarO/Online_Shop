@@ -128,7 +128,7 @@ public class AdminMethods {
             String username = rs.getString("username");
             String password = rs.getString("password");
             double balance = rs.getDouble("balance");
-            System.out.println(id + "\t" + username + "\t" + password + "\t" + balance);
+            System.out.println(id + "\t" + username + "\t" + password + "\t$" + balance);
         }
     }
 
@@ -195,7 +195,7 @@ public class AdminMethods {
             int id = rs.getInt("id");
             String name = rs.getString("name");
             double price = rs.getDouble("price");
-            System.out.println(id + "\t" + name + "\t" + price);
+            System.out.println(id + "\t" + name + "\t$" + price);
         }
     }
 }

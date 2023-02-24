@@ -31,7 +31,7 @@ public class Headphone extends Product implements ProductMethod {
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
                 Headphone headphone = new Headphone(id, name, price);
-                System.out.println(headphone.getId() + "\t" + headphone.getName() + "\t" + headphone.getPrice());
+                System.out.println(headphone.getId() + "\t" + headphone.getName() + "\t$" + headphone.getPrice());
             }
         } catch (SQLException e) {
             System.out.println("Error displaying phones: " + e.getMessage());

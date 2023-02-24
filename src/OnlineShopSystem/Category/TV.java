@@ -29,7 +29,7 @@ public class TV extends Product implements ProductMethod {
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
                 TV tv = new TV(id, name, price);
-                System.out.println(tv.getId() + "\t" + tv.getName() + "\t" + tv.getPrice());
+                System.out.println(tv.getId() + "\t" + tv.getName() + "\t$" + tv.getPrice());
             }
         } catch (SQLException e) {
             System.out.println("Error displaying phones: " + e.getMessage());
