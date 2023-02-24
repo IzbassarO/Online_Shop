@@ -13,8 +13,31 @@ public class RegistrationManager {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter username: ");
         String username = scanner.nextLine();
-        System.out.println("Enter password: ");
-        String password = scanner.nextLine();
+
+        String password = null;
+        while (password == null) {
+            System.out.println("Enter password (at least 8 characters with 2 letters): ");
+            password = scanner.nextLine();
+
+            // Check password length
+            if (password.length() < 8) {
+                System.out.println("Password must be at least 8 characters long.");
+                password = null;
+                continue;
+            }
+
+            // Check for at least 2 letters
+            int letterCount = 0;
+            for (char c : password.toCharArray()) {
+                if (Character.isLetter(c)) {
+                    letterCount++;
+                }
+            }
+            if (letterCount < 2) {
+                System.out.println("Password must contain at least 2 letters.");
+                password = null;
+            }
+        }
 
         // Get database connection
         Connection conn = DatabaseConnection.getConnection();

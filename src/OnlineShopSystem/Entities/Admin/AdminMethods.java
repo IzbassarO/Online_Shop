@@ -114,6 +114,7 @@ public class AdminMethods {
             System.out.println("You don't have permission to view all users.");
             return;
         }
+
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM clients");
         ResultSet rs = ps.executeQuery();
 
@@ -121,16 +122,20 @@ public class AdminMethods {
             System.out.println("No users found.");
             return;
         }
+
         System.out.println("All users:");
-        System.out.println("ID\tUsername\tPassword\tBalance");
+        System.out.printf("%-5s %-15s %-15s %s%n", "ID", "Username", "Password", "Balance");
+
         while (rs.next()) {
             int id = rs.getInt("id");
             String username = rs.getString("username");
             String password = rs.getString("password");
             double balance = rs.getDouble("balance");
-            System.out.println(id + "\t" + username + "\t" + password + "\t$" + balance);
+
+            System.out.printf("%-5d %-15s %-15s $%.2f%n", id, username, password, balance);
         }
     }
+
 
     public static void RemoveUser(Admin admin) throws SQLException {
         if (!admin.isAdmin()) {
