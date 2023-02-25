@@ -1,7 +1,6 @@
 package OnlineShopSystem.Entities.User;
 
 import OnlineShopSystem.Database.DatabaseConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
